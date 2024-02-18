@@ -1,0 +1,118 @@
+#include<stdio.h>
+void display(){
+    int size;
+    printf("Enter the size of array: ");
+    scanf("%d",&size);
+    int arr[size];
+    printf("Enter the array elements: ");
+    for(int i=0;i<size;i++){
+        scanf("%d",&arr[i]);
+    }
+    for(int i=0;i<size;i++){
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+void insertion(){
+    int capacity;
+    printf("Enter the size of array: ");
+    scanf("%d",&capacity);
+    int arr[capacity];
+    printf("How many elements you want to initialize\nIt should be less than %d: ",capacity);
+    int size_of_Carray;
+    scanf("%d",&size_of_Carray);
+    printf("Enter the elements: ");
+    for(int i=0;i<size_of_Carray;i++){
+        scanf("%d",&arr[i]);
+    }
+    int element,index;
+    printf("Enter the element you want to insert and its INDEX TOO\n");
+    scanf("%d%d",&element,&index);
+    for(int i=size_of_Carray-1;i>=index;i--){
+        arr[i+1]=arr[i];
+    }
+    arr[index]=element;
+    size_of_Carray+=1;
+    for(int i=0;i<size_of_Carray;i++){
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+void deletion(){
+    int capacity;
+    printf("Enter the size of array: ");
+    scanf("%d",&capacity);
+    int arr[capacity];
+    printf("How many elements you want to initialize\nIt should be less than %d: ",capacity);
+    int size_of_Carray;
+    scanf("%d",&size_of_Carray);
+    printf("Enter the elements: ");
+    for(int i=0;i<size_of_Carray;i++){
+        scanf("%d",&arr[i]);
+    }
+    int index;
+    printf("Enter the INDEX for deletion the element of it: ");
+    scanf("%d",&index);
+    for(int i=index;i<size_of_Carray-1;i++){
+        arr[i]=arr[i+1];
+    }
+    size_of_Carray-=1;
+    for(int i=0;i<size_of_Carray;i++){
+        printf("%d ",arr[i]);
+    }
+    printf("\n");
+}
+void binary_search(){
+    int size;
+    printf("enter the size of array: ");
+    scanf("%d",&size);
+    int arr[size];
+    printf("Enter the array elements:\n");
+    for(int i=0;i<size;i++){
+        scanf("%d",&arr[i]);
+    }
+    int element;
+    printf("Enter the element to be seached: ");
+    scanf("%d",&element);
+    int low=0,mid,high=size-1;
+    while(low <= high){
+        mid=(low+high)/2;
+        if(arr[mid]==element){
+            printf("element %d found at index %d",element,mid);
+            return;
+        }
+        if(arr[mid]>element){
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+    }
+    printf("Element %d not found\n",element);
+}
+
+int main(){
+    char operations='0';
+    while(operations !='5'){
+        printf("\nenter 5 to close the program");
+        printf("\na.Traverse\nb.Insertion\nc.Deletion\nd.searching");
+        printf("\nEnter a character related to your choice: ");
+        scanf(" %c",&operations);
+    
+        switch(operations){
+            case 'a':
+            display();
+            break;
+            case 'b':
+            insertion();
+            break;
+            case 'c':
+            deletion();
+            break;
+            case 'd':
+            binary_search();
+            break;
+        }
+    }
+    return 0;
+}
